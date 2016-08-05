@@ -450,3 +450,8 @@ table#posts-list-table td {
 table#posts-list-table tr:nth-child(even) {
   background-color: rgba(0,0,0,0.05)
 }
+
+h1#project_title a {
+  text-decoration: none;
+  color: white;
+}
