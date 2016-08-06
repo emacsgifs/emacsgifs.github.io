@@ -14,6 +14,7 @@ mv "${mp4_name}" "../tweets/${tweet_id}.mp4"
 template/tweet.template.rb > "../tweets/${tweet_id}.html"
 template/tweet.index.template.rb > "../index.${tweet_id}.html"
 sed "/index top -->/ r ../index.${tweet_id}.html" ../index.html > ../new_index.html
+rm "../index.${tweet_id}.html"
 mv ../new_index.html ../index.html
 
 echo "- Done ---------------------------------------------------------------"
