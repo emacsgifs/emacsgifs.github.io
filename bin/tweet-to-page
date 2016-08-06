@@ -1,0 +1,19 @@
+#!/bin/sh
+
+export tweet_id="$(echo "$1" | sed -E 's/.*\/([0-9]+$)/\1/')"
+youtube-dl "$1" # https://twitter.com/emacs_gifs/status/
+mp4_name=$(ls *$tweet_id*)
+export body="$(echo "$mp4_name" | sed -E 's/emacs gifs - (.*)-[0-9]+.mp4$/\1/')"
+
+# mv $mp4_name "${tweet_id}.mp4"
+
+echo $tweet_id
+
+echo "----------------------------------------------------------------------"
+
+echo $body
+
+mv "${mp4_name}" "../tweets/${tweet_id}.mp4"
+template/tweet.template.rb > "../tweets/${tweet_id}.html"
+template/tweet.index.template.rb > "../index.${tweet_id}.html"
+sed "/index top -->/ r ../index.${tweet_id}.html" ../index.html > ../new_index.html

@@ -461,5 +461,6 @@ h1#project_title a {
 @media all and (max-width: 700px) {
   video {
     border-radius: 0px;
+    width: 350px;
   }
 }
