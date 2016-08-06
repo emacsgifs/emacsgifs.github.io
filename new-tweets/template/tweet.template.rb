@@ -21,7 +21,7 @@ puts %Q^
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/emacsgifs/emacsgifs">View on GitHub</a>
           <h1 id="project_title"><a href="/">Emacs GIFS</a></h1>
-          <p style="font-size: 14pt" id="project_tagline">Bite-sized snippets of Emacs in action. (since 2016)</p>
+          <p style="font-size: 14pt" id="project_tagline">Bite-sized snippets of Emacs in action. <a href="https://twitter.com/emacs_gifs">(on Twitter since 2016)</a></p>
         </header>
       </div>
       <div>
