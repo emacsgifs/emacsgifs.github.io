@@ -4,8 +4,11 @@
 
 _Random (easily impressed) Visitor_
 
-Stored here are/will be:
+### Features
 
-- TODO: Tweets and associated GIFs
+- Tweets and associated MP4s
+- Page per post with comment powered by Disqus
+
+### Roadmap
+
 - TODO: Pages for most favorited GIFs by rank
-- TODO: Page per post with comment engine
