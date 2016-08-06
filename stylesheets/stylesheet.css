@@ -458,7 +458,7 @@ h1#project_title a {
   color: white;
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 700px) {
   video {
     border-radius: 0px;
   }
