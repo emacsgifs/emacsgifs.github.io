@@ -1,9 +1,4 @@
-#!/usr/bin/env ruby
 
-tweet_id=ENV['tweet_id']
-body=ENV['body']
-
-puts %Q^
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,9 +23,9 @@ puts %Q^
         <!-- MAIN CONTENT -->
         <div id="main_content_wrap" class="outer">
           <section id="main_content" class="inner">
-            <p>#{body}</p>
+            <p>Let's do an unordered &lt;ul&gt; list of cats in Emacs. Inspired by @vimgifs!</p>
             <video controls autoplay>
-            <source src="#{tweet_id}.mp4" type="video/mp4">
+            <source src="762164464414101504.mp4" type="video/mp4">
             Sorry your browser does not support the video tag, maybe time to upgrade?
             </video>
             <hr/>
@@ -59,4 +54,3 @@ puts %Q^
     <script id="dsq-count-scr" src="//emacsgifs.disqus.com/count.js" async></script>
   </body>
 </html>
-^
