@@ -20,8 +20,8 @@ puts %Q^
       <div id="header_wrap" class="outer">
         <header class="inner">
           <div id="about_emacs_gifs">
-            <a href="about.html">About @emacs_gifs</a>
-            <a href="keybindings.html">@ocodo's keybindings</a>
+            <a href="/about.html">About @emacs_gifs</a>
+            <a href="/keybindings.html">@ocodo's keybindings</a>
           </div>
           <a id="forkme_banner" href="https://github.com/emacsgifs/emacsgifs"></a>
           <h1 id="project_title"><a href="/">Emacs GIFS</a></h1>
