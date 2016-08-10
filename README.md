@@ -12,3 +12,7 @@ _Random (easily impressed) Visitor_
 ### Roadmap
 
 - TODO: Pages for most favorited GIFs by rank
+- TODO: Tags based filtering (in-page using JS)
+- TODO: Reorder index based on filter/sort
+- TODO: Show date of tweet/Gif 
+- TODO: Timeline view on index group by month / day 
