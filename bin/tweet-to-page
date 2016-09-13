@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export tweet_id="$(echo "$1" | sed -E 's/.*\/([0-9]+$)/\1/')"
-youtube-dl "$1" # https://twitter.com/emacs_gifs/status/
+youtube-dl "https://twitter.com/emacs_gifs/status/${tweet_id}" # https://twitter.com/emacs_gifs/status/
 mp4_name=$(ls *$tweet_id*)
 export body="$(echo "$mp4_name" | sed -E 's/emacs gifs - (.*)-[0-9]+.mp4$/\1/')"
 
