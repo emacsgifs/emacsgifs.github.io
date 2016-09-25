@@ -4,6 +4,7 @@
 @import 'syntax';
 
 $site-background-color: #f5f5f5;
+$code-background-color: #282828;
 $contrast-color: #333;
 
 $azul-accent-color: #0070bb;
@@ -66,15 +67,18 @@ hr {
 }
 
 code {
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-family: menlo, monaco, Consolas, "Liberation Mono", Courier, monospace;
   font-size: .8rem;
 }
 
 p code {
-  padding: 0px 5px;
-  border: 1px solid #ddd;
-  background-color: #f8f8f8;
-  border-radius: 3px;
+  padding: 5px 8px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border: 1px solid rgba(0,0,0,0.15);
+  color: $code-background-color;
+  background-color: $site-background-color;
+  border-radius: 5px;
   white-space: nowrap;
 }
 
@@ -129,14 +133,15 @@ footer {
 /*----------------------------------------------------------------------------*/
 
 .highlight {
-  padding: 30px;
+  padding: 15px;
   border-radius: 6px;
-  background-color: #272822;
+  background-color: $code-background-color;
   color: #f8f8f2;
   line-height: 1;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.24);
 
   code {
-    font-size: .7rem;
+    font-size: .8rem;
   }
 }
 
