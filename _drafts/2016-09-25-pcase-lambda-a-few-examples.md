@@ -26,15 +26,16 @@ built in, and it's so ridiculously useful that it's unlikely to slip
 past most active JS developers.
 
 Common scripting languages will have some similar
-features. [Perl has list assignment][perl-la]. [Ruby has something similar, inspired by Perl][ruby-la],
-[Python has tuple assignment/unpacking][python-ma].
+features. [Perl has list assignment][perl-la]. [Ruby too, inspired by Perl][ruby-la],
+[Python has something a little better, tuple assignment/unpacking][python-ma].
 
-Functional (and functional hybrid languages) usually have some form
-of pattern matching, as it originates from [Standard ML][standard-ml].
+Functional (and functional hybrid languages) usually have some form of
+pattern matching. It's a language fearture that originates
+from [Standard ML][standard-ml].
 
-Pattern matching is similar to plain old destructuring, with the
-addition of conditional behaviour.  You can match a given pattern
-against a given data structure.
+Pattern matching includes destructuring, but also provides conditions.
+You can perform branching based on a data-structure matching one of a
+set of patterns.
 
 ## The pcase macro
 
@@ -71,7 +72,7 @@ needed as a prefix for all literal values.
 If we need to match a value inside a list, we backquote the list.
 
 {% highlight elisp %}
-(setq-local numbers (list 1 2 3))
+(setq-local numbers '(1 2 3))
 
 (pcase numbers
   (`(3 4 5) (message "3 4 5 matched"))
@@ -82,13 +83,13 @@ If we need to match a value inside a list, we backquote the list.
 
 ## Return values
 
-`pcase` works like any normal expression, returning the result of the evaluated s-expression.
+`pcase` works like any normal expression, returning the result of the evaluated form.
 
 {% highlight elisp %}
 (+ 10 (pcase numbers
-             (`(3 4 5)          (* 2 10))
-             (`(1 2 3)          (+ 5 20)))
-             ;; patterns matches |  ^ s-expressions to evaluate
+              (`(3 4 5)       (* 2 10))
+              (`(1 2 3)       (+ 5 20)))
+           ;; ^ patterns   |  ^ evaluate
 ;; => 25
 {% endhighlight %}
 
@@ -100,9 +101,9 @@ If we want to match a pattern partially we can use the don't care operator (`_` 
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5) (message "3 4 5 matched"))
+  (`(3 4 5)  (message "3 4 5 matched"))
   (`(1 ,_ 3) (message "1, *anything* and 3 matched"))
-  (`(3 6 9) (message "3 6 9 matched")))
+  (`(3 6 9)  (message "3 6 9 matched")))
 
 ;; "1 ? 3 matched"
 {% endhighlight %}
@@ -168,24 +169,6 @@ Pcase has a variety of advanced patterns, le's look into them now...
 {% endhighlight %}
 
 Matches if `{function}` applied to the object returns non-nil.
-
-{% highlight elisp %}
-(setq time-list (-map 'string-to-int (s-split ":" (format-time-string "%H:%M:%S"))))
-
-(pcase time-list
-  (`(,(pred (lambda (hour)
-              (pcase hour
-                ((pred (lambda (h) (<= 12 h))) "Morning")
-                ((pred (lambda (h) (and
-                                    (> 12 h)
-                                    (<= 18 h)))) "Afternoon")
-                ((pred (lambda (h) (> 18 h))) "Evening")
-                )
-              ))
-     ,min
-     ,second)))
-{% endhighlight %}
-
 
 ## guard
 
@@ -275,6 +258,22 @@ Here's a few examples:
 As you saw earlier, We can capture specific values from a
 data-structure using `pcase` patterns, there are two dedicated macros
 that we can use for destructuring `pcase-let` and `pcase-let*`.
+
+While it's possible to do simple destructuring with the `pcase` macro, it's cleaner to use the `pcase-let` forms. For example:
+
+{% highlight elisp %}
+(setq-local time-list
+            (mapcar
+             'string-to-int
+             (s-split ":" (format-time-string "%H:%M:%S"))))
+
+(pcase-let  ((`(,hour ,min ,second) time-list))
+  (pcase hour
+    (pred (lambda (h) (< 12 h)) "it's Morning")
+    (pred (lambda (h) (> 18 h)) "it's Evening")
+    (pred (lambda (h) (> 12 h)) "it's Afternoon")))
+{% endhighlight %}
+
 
 [js-destrukt]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 [python-ma]: http://openbookproject.net/thinkcs/python/english3e/tuples.html#tuple-assignment
