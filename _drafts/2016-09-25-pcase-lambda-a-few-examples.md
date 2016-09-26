@@ -13,8 +13,8 @@ tags:
 The
 [`pcase.el`](http://repo.or.cz/w/emacs.git/blob/HEAD:/lisp/emacs-lisp/pcase.el) package
 brings pattern matching to Emacs Lisp.  Unfortunately the
-documentation is a little sparse, so I'm posting a few articles to dig
-deeper into `pcase`.
+documentation is a little sparse.  Hopefully this article will go some
+way to helping you get a handle on `pcase` and it's associated macros.
 
 ## What is pattern matching?
 
@@ -53,9 +53,8 @@ Let's start with a simple example to show the basic execution of a pcase.
 ;; "world matched"
 {% endhighlight %}
 
-Note the `backquote` (or *grave accent*) is needed to match the string
-literal `"world"`, (and of course try matching `"hello"`). This is
-true when matching any literal value.
+Note the **<code>`</code>** ([backquote][bq] or grave accent) is
+needed as a prefix for all literal values.
 
 {% highlight elisp %}
 (setq-local num 23)
@@ -69,7 +68,7 @@ true when matching any literal value.
 ;; "23 matched"
 {% endhighlight %}
 
-If we need to match a value inside a list, we `backquote` the list.
+If we need to match a value inside a list, we backquote the list.
 
 {% highlight elisp %}
 (setq-local numbers (list 1 2 3))
@@ -95,21 +94,23 @@ If we need to match a value inside a list, we `backquote` the list.
 
 ## Anything goes
 
-If we want to match a pattern partially we can use the `_` **underscore**, like this.
+If we want to match a pattern partially we can use the don't care operator (`_` **underscore**), like this.
 
 {% highlight elisp %}
-(setq-local numbers (list 1 2 3))
+(setq-local numbers '(1 2 3))
 
 (pcase numbers
   (`(3 4 5) (message "3 4 5 matched"))
-  (`(1 ,_ 3) (message "1 ? 3 matched"))
+  (`(1 ,_ 3) (message "1, *anything* and 3 matched"))
   (`(3 6 9) (message "3 6 9 matched")))
 
 ;; "1 ? 3 matched"
 {% endhighlight %}
 
-Note that we use `,_` the **comma**.  In pcase patterns the comma will
-assign the value in place to the symbol, let's see that.
+Note that we use `,_`
+
+In pcase patterns the comma will assign the value in place to the
+symbol, let's see that...
 
 ## Capture the values
 
@@ -122,26 +123,163 @@ assign the value in place to the symbol, let's see that.
 Lisp error: (void variable _)
 {% endhighlight %}
 
-Ok, not in the case of **underscore**, because it's special.
+Oh! Ok, well not in the case of **`,_`** because it's very special.
 
-Let's use something else. Let's capture the second value in the list using `foo`.
+Ok, let's do it properly, we'll capture the second value in the list
+using a symbol which we'll call **`foo`**.
+
+In the pattern we will refer to it as **`,foo`**
 
 {% highlight elisp %}
 (pcase numbers
   (`(3 4 5) (message "3 4 5 matched"))
-  (`(1 ,foo 3) (message "1 %s 3 matched" foo))
+  (`(1 ,foo 3) (message "1, foo = %s, 3 matched" foo))
   (`(3 6 9) (message "3 6 9 matched")))
 
-;; "1 2 3 matched"
+;; "1, foo = 2, 3 matched"
 {% endhighlight %}
 
-By placing `,foo` in the pattern, we capture the value in that
-position and place it into the symbol `foo`.
+By placing **`,foo`** in the pattern we capture the value in that
+position and place it into our symbol `foo`.
 
-This is the essence of the destructuring side of `pcase`.  More on that later
+This is how we de-structure data structures with `pcase` patterns.
+
+{% highlight elisp %}
+(pcase numbers
+  (`(,a ,b ,c) (message "a:%s b:%s c:%s" a b c)))
+
+;; "a:1 b:2 c:3"
+{% endhighlight %}
+
+The example above doesn't really need to be a regular `pcase`.  It's a
+misuse of the `pcase` form.  Instead we should be using one of the
+dedicated *pcase destructuring macros* `pcase-let` or `pcase-let*`.
+We'll look at those in some more depth
+later.  (If you prefer [jump to destructuring in depth right now.](#destructuring).)
+
+## Advanced pcase patterns
+
+Pcase has a variety of advanced patterns, le's look into them now...
+
+## pred
+
+{% highlight elisp %}
+(pred {function})
+{% endhighlight %}
+
+Matches if `{function}` applied to the object returns non-nil.
+
+{% highlight elisp %}
+(setq time-list (-map 'string-to-int (s-split ":" (format-time-string "%H:%M:%S"))))
+
+(pcase time-list
+  (`(,(pred (lambda (hour)
+              (pcase hour
+                ((pred (lambda (h) (<= 12 h))) "Morning")
+                ((pred (lambda (h) (and
+                                    (> 12 h)
+                                    (<= 18 h)))) "Afternoon")
+                ((pred (lambda (h) (> 18 h))) "Evening")
+                )
+              ))
+     ,min
+     ,second)))
+{% endhighlight %}
+
+
+## guard
+
+{% highlight elisp %}
+(guard {boolean-expression})
+{% endhighlight %}
+
+Matches if the `{boolean-expression}` evaluates to non-nil.
+
+Here's a few examples:
+
+## or
+
+{% highlight elisp %}
+(or {pattern...})
+{% endhighlight %}
+
+Matches if any of the patterns match. Let's see some examples...
+
+{% highlight elisp %}
+(pcase numbers
+  (or `(1 2 3) `(3 3 3) (message "matched one of these patterns")))
+
+;; matched one of these patterns
+{% endhighlight %}
+
+The _don't care operator_ will work in an `or` case, note that in the `or` form we use **`_`**
+instead of **`,_`**
+
+{% highlight elisp %}
+(pcase numbers
+  (or `(3 3 3) `(1 _ 3) "matched one of these patterns"))
+
+;; matched one of these patterns
+{% endhighlight %}
+
+**or** can also be embedded in another pattern, for example:
+
+{% highlight elisp %}
+(pcase numbers
+  (`(1 2 ,(or 3 5)) "list of (1 2 [3 or 5])"))
+
+;; list of (1 2 [3 or 5])
+{% endhighlight %}
+
+## and
+
+{% highlight elisp %}
+(and {pattern...})
+{% endhighlight %}
+
+Matches if all of the patterns match, let's look at some examples...
+
+{% highlight elisp %}
+(pcase '(1 2 "hello")
+  (`(1 2
+       ,(and (pred stringp)
+             (pred (lambda (s) (> (length s) 4)))))
+   "This matched"))
+
+;; This matched
+{% endhighlight %}
+
+## let
+
+{% highlight elisp %}
+(let {pattern} {expression})
+{% endhighlight %}
+
+Matches if `{expression}` matches `{pattern}`
+
+Here's a few examples:
+
+## app
+
+{% highlight elisp %}
+(app {function} {pattern})
+{% endhighlight %}
+
+Matches if `{function}` applied to the object matches `{pattern}`.
+
+Here's a few examples:
+
+<a name="destructuring"/>
+## Destructuring in depth
+
+As you saw earlier, We can capture specific values from a
+data-structure using `pcase` patterns, there are two dedicated macros
+that we can use for destructuring `pcase-let` and `pcase-let*`.
 
 [js-destrukt]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 [python-ma]: http://openbookproject.net/thinkcs/python/english3e/tuples.html#tuple-assignment
+[perl-la]: http://docstore.mik.ua/orelly/perl4/lperl/ch03_04.htm
 [ruby-la]: http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html
 [standard-ml]: https://en.wikipedia.org/wiki/Standard_ML
 [john-wiegley-post]: http://newartisans.com/2016/01/pattern-matching-with-pcase/
+[bq]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
