@@ -16,7 +16,7 @@ brings pattern matching to Emacs Lisp.  Unfortunately the
 documentation is a little sparse, so I'm posting a few articles to dig
 deeper into `pcase`.
 
-### What is pattern matching?
+## What is pattern matching?
 
 The majority of software developers will be aware of some pattern
 matching features, even if not by the same name.
@@ -36,67 +36,109 @@ Pattern matching is similar to plain old destructuring, with the
 addition of conditional behaviour.  You can match a given pattern
 against a given data structure.
 
-# The pcase macro
+## The pcase macro
 
-Let's look at some simple ways that pattern matching can be used for
-conditional destructuring.
+I'll walk you through some `pcase` examples, follow along using your Emacs
+`*scratch*` buffer.
 
-Note: This example is expanded
-from [John Wiegley's post][john-wiegley-post] (I encourage you to read
-the whole post, and try out the examples.)
-
-We'll be working with `value` defined as
+Let's start with a simple example to show the basic execution of a pcase.
 
 {% highlight elisp %}
-'(1 2 (4 . 5) "Hello")
+(setq-local hello "world")
+
+(pcase hello
+  (`"hello" (message "hello matched"))
+  (`"world" (message "world matched")))
+
+;; "world matched"
 {% endhighlight %}
 
-A simple enough data structure. Let's make it available for us to play with.
-
-Switch to your `*scratch*` buffer `C-x b` paste in this s-expression:
+Note the `backquote` (or *grave accent*) is needed to match the string
+literal `"world"`, (and of course try matching `"hello"`). This is
+true when matching any literal value.
 
 {% highlight elisp %}
-(setq-local value  '(1 2 (4 . 5) "Hello"))
+(setq-local num 23)
+
+(pcase num
+  (`1 (message "1 matched"))
+  (`42 (message "42 matched"))
+  (`23 (message "23 matched"))
+  (`104 (message "104 matched")))
+
+;; "23 matched"
 {% endhighlight %}
 
-Evaluate this expression with `C-x C-e`, now we can do things with
-`value`.
-
-Let's check it with the `equal` function. `equal` will check that
-two data structures have the same values.
+If we need to match a value inside a list, we `backquote` the list.
 
 {% highlight elisp %}
-(equal
-  value
-  '(1 2 (4 . 5) "Hello"))
+(setq-local numbers (list 1 2 3))
 
-;; => t
+(pcase numbers
+  (`(3 4 5) (message "3 4 5 matched"))
+  (`(1 2 3) (message "1 2 3 matched")))
+
+;; "1 2 3 matched"
 {% endhighlight %}
 
-Let's say we want to check that the final value is a string, it's
-quite a bit of code.
+## Return values
+
+`pcase` works like any normal expression, returning the result of the evaluated s-expression.
 
 {% highlight elisp %}
-(and
-  (equal
-    (subseq value 0 3)
-    '(1 2 (4 . 5)))
-  (stringp (nth 3 value)))
-
-;; => t
+(+ 10 (pcase numbers
+             (`(3 4 5)          (* 2 10))
+             (`(1 2 3)          (+ 5 20)))
+             ;; patterns matches |  ^ s-expressions to evaluate
+;; => 25
 {% endhighlight %}
 
-Using `pcase` patterns we can really slim this down.
+## Anything goes
+
+If we want to match a pattern partially we can use the `_` **underscore**, like this.
 
 {% highlight elisp %}
-(pcase value
-  (`(1 2 (4 . 5) ,(pred stringp))
-  (message "value matched")))
+(setq-local numbers (list 1 2 3))
+
+(pcase numbers
+  (`(3 4 5) (message "3 4 5 matched"))
+  (`(1 ,_ 3) (message "1 ? 3 matched"))
+  (`(3 6 9) (message "3 6 9 matched")))
+
+;; "1 ? 3 matched"
 {% endhighlight %}
 
-This `pcase` form works like a switch/case,
-The `pred` form is useful for
+Note that we use `,_` the **comma**.  In pcase patterns the comma will
+assign the value in place to the symbol, let's see that.
 
+## Capture the values
+
+{% highlight elisp %}
+(pcase numbers
+  (`(3 4 5) (message "3 4 5 matched"))
+  (`(1 ,_ 3) (message "1 %s 3 matched" _))
+  (`(3 6 9) (message "3 6 9 matched")))
+
+Lisp error: (void variable _)
+{% endhighlight %}
+
+Ok, not in the case of **underscore**, because it's special.
+
+Let's use something else. Let's capture the second value in the list using `foo`.
+
+{% highlight elisp %}
+(pcase numbers
+  (`(3 4 5) (message "3 4 5 matched"))
+  (`(1 ,foo 3) (message "1 %s 3 matched" foo))
+  (`(3 6 9) (message "3 6 9 matched")))
+
+;; "1 2 3 matched"
+{% endhighlight %}
+
+By placing `,foo` in the pattern, we capture the value in that
+position and place it into the symbol `foo`.
+
+This is the essence of the destructuring side of `pcase`.  More on that later
 
 [js-destrukt]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 [python-ma]: http://openbookproject.net/thinkcs/python/english3e/tuples.html#tuple-assignment
