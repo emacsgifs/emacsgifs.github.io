@@ -255,7 +255,7 @@ Here's a few examples:
 <a name="destructuring"/>
 ## Destructuring in depth
 
-As you saw earlier, We can capture specific values from a
+As we saw earlier, We can capture specific values from a
 data-structure using `pcase` patterns, there are two dedicated macros
 that we can use for destructuring `pcase-let` and `pcase-let*`.
 
