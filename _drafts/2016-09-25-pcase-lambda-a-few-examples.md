@@ -10,11 +10,10 @@ tags:
   - emacs-lisp
 ---
 
-The
-[`pcase.el`](http://repo.or.cz/w/emacs.git/blob/HEAD:/lisp/emacs-lisp/pcase.el) package
-brings pattern matching to Emacs Lisp.  Unfortunately the
-documentation is a little sparse.  Hopefully this article will go some
-way to helping you get a handle on `pcase` and it's associated macros.
+[`pcase.el`][pcase-el] brought pattern matching to Emacs Lisp.
+Unfortunately the documentation is a little sparse.  Hopefully this
+article will go some way to helping you get a handle on `pcase` and
+it's associated macros.
 
 ## What is pattern matching?
 
@@ -278,11 +277,11 @@ While it's possible to do simple destructuring with the `pcase` macro, it's clea
     (pred (lambda (h) (> 12 h)) "it's Afternoon")))
 {% endhighlight %}
 
-
+[bq]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
+[john-wiegley-post]: http://newartisans.com/2016/01/pattern-matching-with-pcase/
 [js-destrukt]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-[python-ma]: http://openbookproject.net/thinkcs/python/english3e/tuples.html#tuple-assignment
+[pcase-el]: http://repo.or.cz/w/emacs.git/blob/HEAD:/lisp/emacs-lisp/pcase.el
 [perl-la]: http://docstore.mik.ua/orelly/perl4/lperl/ch03_04.htm
+[python-ma]: http://openbookproject.net/thinkcs/python/english3e/tuples.html#tuple-assignment
 [ruby-la]: http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html
 [standard-ml]: https://en.wikipedia.org/wiki/Standard_ML
-[john-wiegley-post]: http://newartisans.com/2016/01/pattern-matching-with-pcase/
-[bq]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
