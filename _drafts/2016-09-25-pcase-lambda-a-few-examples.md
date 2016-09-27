@@ -57,13 +57,17 @@ Let's start with a simple example to show the basic execution of a pcase.
 Note the **<code>`</code>** ([backquote][bq] or grave accent) is
 needed as a prefix for all literal values.
 
+```
+hello
+```
+
 {% highlight elisp %}
 (setq-local num 23)
 
 (pcase num
-  (`1 (message "1 matched"))
-  (`42 (message "42 matched"))
-  (`23 (message "23 matched"))
+  (`1   (message "1 matched"))
+  (`42  (message "42 matched"))
+  (`23  (message "23 matched"))
   (`104 (message "104 matched")))
 
 ;; "23 matched"
@@ -87,9 +91,9 @@ If we need to match a value inside a list, we backquote the list.
 
 {% highlight elisp %}
 (+ 10 (pcase numbers
-              (`(3 4 5)       (* 2 10))
-              (`(1 2 3)       (+ 5 20)))
-           ;; ^ patterns   |  ^ evaluate
+              ( `(3 4 5)   (* 2 10))
+              ( `(1 2 3)   (+ 5 20)))
+           ;; ^ patterns | ^ evaluate
 ;; => 25
 {% endhighlight %}
 
