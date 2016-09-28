@@ -12,8 +12,7 @@ tags:
 
 [`pcase.el`][pcase-el] brought pattern matching to Emacs Lisp.
 Unfortunately the documentation is a little sparse.  Hopefully this
-article will go some way to helping you get a handle on `pcase` and
-it's associated macros.
+article will go some way to helping you get a handle on pattern matching and destructuring in Emacs.
 
 ## What is pattern matching?
 
@@ -47,8 +46,8 @@ Let's start with a simple example to show the basic execution of a pcase.
 (setq-local hello "world")
 
 (pcase hello
-  (`"hello" (message "hello matched"))
-  (`"world" (message "world matched")))
+  (`"hello" "hello matched")
+  (`"world" "world matched"))
 
 ;; => "world matched"
 {% endhighlight %}
@@ -60,10 +59,10 @@ needed as a prefix for all literal values.
 (setq-local num 23)
 
 (pcase num
-  (`1   (message "1 matched"))
-  (`42  (message "42 matched"))
-  (`23  (message "23 matched"))
-  (`104 (message "104 matched")))
+  (`1 "1 matched")
+  (`42 "42 matched")
+  (`23 "23 matched")
+  (`104 "104 matched"))
 
 ;; => "23 matched"
 {% endhighlight %}
@@ -74,8 +73,8 @@ If we need to match a value inside a list, we backquote the list.
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5) (message "3 4 5 matched"))
-  (`(1 2 3) (message "1 2 3 matched")))
+  (`(3 4 5) "3 4 5 matched")
+  (`(1 2 3) "1 2 3 matched"))
 
 ;; => "1 2 3 matched"
 {% endhighlight %}
@@ -94,15 +93,15 @@ If we need to match a value inside a list, we backquote the list.
 
 ## Anything goes
 
-If we want to match a pattern partially we can use the don't care operator (`_` **underscore**), like this.
+If we want to match a pattern partially we use the dontcare operator (`_` **underscore**), here's how:
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5)  (message "3 4 5 matched"))
-  (`(1 ,_ 3) (message "1, *anything* and 3 matched"))
-  (`(3 6 9)  (message "3 6 9 matched")))
+  (`(3 4 5) "3 4 5 matched")
+  (`(1 ,_ 3) "1, *anything* and 3 matched")
+  (`(3 6 9) "3 6 9 matched"))
 
 ;; => "1 ? 3 matched"
 {% endhighlight %}
@@ -118,11 +117,11 @@ symbol, let's see that...
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5) (message "3 4 5 matched"))
-  (`(1 ,_ 3) (message "1 %s 3 matched" _))
-  (`(3 6 9) (message "3 6 9 matched")))
+  (`(3 4 5) "3 4 5 matched")
+  (`(1 ,_ 3) (format "1 %s 3 matched" _))
+  (`(3 6 9) "3 6 9 matched"))
 
-Lisp error: (void variable _)
+;; Lisp error: (void variable _)
 {% endhighlight %}
 
 Oh! Ok, well not in the case of **`,_`** because it's very special.
@@ -136,9 +135,9 @@ In the pattern we will refer to it as **`,foo`**
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5) (message "3 4 5 matched"))
-  (`(1 ,foo 3) (message "1, foo = %s, 3 matched" foo))
-  (`(3 6 9) (message "3 6 9 matched")))
+  (`(3 4 5) "3 4 5 matched")
+  (`(1 ,foo 3) (format "1, foo = %s, 3 matched" foo))
+  (`(3 6 9) "3 6 9 matched"))
 
 ;; => "1, foo = 2, 3 matched"
 {% endhighlight %}
@@ -168,9 +167,11 @@ later.  (If you prefer [jump to destructuring in depth right now.](#destructurin
 
 ## Advanced pcase patterns
 
-Pcase has a variety of advanced patterns, le's look into them now...
+Pcase has a variety of advanced patterns.
 
 ## pred
+
+Pred, a predicate takes a function which returns a boolean (non-nil evalutes to true.)
 
 {% highlight elisp %}
 (pred {function})
@@ -178,8 +179,8 @@ Pcase has a variety of advanced patterns, le's look into them now...
 
 Matches if `{function}` applied to the object returns non-nil.
 
-Because we're in a backquote context, we don't quote our function name
-(as we usually would):
+Because we're in a backquote context, we comma the `(pred)` form.  The
+match position will be passed to the function as a single argument.
 
 {% highlight elisp %}
 (pcase '(1 2 3)
@@ -213,7 +214,7 @@ You can use `lambda` to declare the function for a `pred` inline.
 
 {% highlight elisp %}
 (pcase '(1 2 "hello")
-  (`(3 4 5) "A list composed of 3, 4 and 5")
+  (`(3 4 5) "List 3, 4, 5")
   (`(1 2
        ,(pred
          (lambda (x)
@@ -223,16 +224,28 @@ You can use `lambda` to declare the function for a `pred` inline.
 ;; => A string containing 'ell'
 {% endhighlight %}
 
+In the example The `lambda` will be evaluated by the `pred`, which
+will pass it the match position (i.e. `"hello"`) as it's argument `x`.
+
 ## guard
 
 {% highlight elisp %}
 (guard {boolean-expression})
 {% endhighlight %}
 
-Matches if the `{boolean-expression}` evaluates to non-nil.
+Matches if the `{boolean-expression}` evaluates to non-nil.  Nothing
+is passed in from the current match position, the `{boolen-expression}`
 
-Here's a few examples:
+Here's a simple examples:
 
+{% highlight elisp %}
+(pcase '(1 2 8)
+  (`(1 2 ,(guard (= 3 1))) "Nope")
+  (`(1 2 ,(guard (= 1 2))) "Why?")
+  (`(1 2 ,(guard (= 2 3))) "Huh?")
+  (`(1 2 ,(guard (= 4 4))) "Yes!")
+  (`(1 2 ,(guard (= 1 5))) "What"))
+{% endhighlight %}
 ## or
 
 {% highlight elisp %}
@@ -242,8 +255,9 @@ Here's a few examples:
 Matches if any of the patterns match. Let's see some examples...
 
 {% highlight elisp %}
+(setq-local numbers '(1 2 3))
 (pcase numbers
-  (or `(1 2 3) `(3 3 3) (message "matched one of these patterns")))
+  (or `(1 2 3) `(3 3 3) "matched one of these patterns"))
 
 ;; => matched one of these patterns
 {% endhighlight %}
