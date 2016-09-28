@@ -227,6 +227,16 @@ You can use `lambda` to declare the function for a `pred` inline.
 In the example The `lambda` will be evaluated by the `pred`, which
 will pass it the match position (i.e. `"hello"`) as it's argument `x`.
 
+{% highlight elisp %}
+(pcase (string-to-number (format-time-string "%H"))
+  ((pred (lambda (h) (< h 5))) "Hey it's really late!")
+  ((pred (lambda (h) (< h 12))) "Good Morning")
+  ((pred (lambda (h) (> h 18))) "Good Evening")
+  ((pred (lambda (h) (> h 12))) "Good Afternoon"))
+
+;; (returns a message for the hour of the day)
+{% endhighlight %}
+
 ## guard
 
 {% highlight elisp %}
@@ -302,7 +312,6 @@ Matches if all of the patterns match, let's look at some examples...
 ;; => t
 {% endhighlight %}
 
-
 {% highlight elisp %}
 (pcase '(1 2 "hello")
   (`(1 2
@@ -345,16 +354,6 @@ data-structure using `pcase` patterns, there are two dedicated macros
 that we can use for destructuring `pcase-let` and `pcase-let*`.
 
 While it's possible to do simple destructuring with the `pcase` macro, it's cleaner to use the `pcase-let` forms. For example:
-
-{% highlight elisp %}
-(setq-local hour 20)
-(pcase hour
-  ((pred (lambda (h) (< h 12))) "Good Morning")
-  ((pred (lambda (h) (> h 18))) "Good Evening")
-  ((pred (lambda (h) (> h 12))) "Good Afternoon"))
-
-;; => Good Evening
-{% endhighlight %}
 
 [bq]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
 [john-wiegley-post]: http://newartisans.com/2016/01/pattern-matching-with-pcase/
