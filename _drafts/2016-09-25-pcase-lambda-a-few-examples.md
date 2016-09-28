@@ -50,15 +50,11 @@ Let's start with a simple example to show the basic execution of a pcase.
   (`"hello" (message "hello matched"))
   (`"world" (message "world matched")))
 
-;; "world matched"
+;; => "world matched"
 {% endhighlight %}
 
 Note the **<code>`</code>** ([backquote][bq] or grave accent) is
 needed as a prefix for all literal values.
-
-```
-hello
-```
 
 {% highlight elisp %}
 (setq-local num 23)
@@ -69,7 +65,7 @@ hello
   (`23  (message "23 matched"))
   (`104 (message "104 matched")))
 
-;; "23 matched"
+;; => "23 matched"
 {% endhighlight %}
 
 If we need to match a value inside a list, we backquote the list.
@@ -81,7 +77,7 @@ If we need to match a value inside a list, we backquote the list.
   (`(3 4 5) (message "3 4 5 matched"))
   (`(1 2 3) (message "1 2 3 matched")))
 
-;; "1 2 3 matched"
+;; => "1 2 3 matched"
 {% endhighlight %}
 
 ## Return values
@@ -108,7 +104,7 @@ If we want to match a pattern partially we can use the don't care operator (`_` 
   (`(1 ,_ 3) (message "1, *anything* and 3 matched"))
   (`(3 6 9)  (message "3 6 9 matched")))
 
-;; "1 ? 3 matched"
+;; => "1 ? 3 matched"
 {% endhighlight %}
 
 Note that we use `,_`
@@ -119,6 +115,8 @@ symbol, let's see that...
 ## Capture the values
 
 {% highlight elisp %}
+(setq-local numbers '(1 2 3))
+
 (pcase numbers
   (`(3 4 5) (message "3 4 5 matched"))
   (`(1 ,_ 3) (message "1 %s 3 matched" _))
@@ -135,12 +133,14 @@ using a symbol which we'll call **`foo`**.
 In the pattern we will refer to it as **`,foo`**
 
 {% highlight elisp %}
+(setq-local numbers '(1 2 3))
+
 (pcase numbers
   (`(3 4 5) (message "3 4 5 matched"))
   (`(1 ,foo 3) (message "1, foo = %s, 3 matched" foo))
   (`(3 6 9) (message "3 6 9 matched")))
 
-;; "1, foo = 2, 3 matched"
+;; => "1, foo = 2, 3 matched"
 {% endhighlight %}
 
 By placing **`,foo`** in the pattern we capture the value in that
@@ -149,10 +149,15 @@ position and place it into our symbol `foo`.
 This is how we de-structure data structures with `pcase` patterns.
 
 {% highlight elisp %}
-(pcase numbers
-  (`(,a ,b ,c) (message "a:%s b:%s c:%s" a b c)))
+(setq-local numbers '(1 2 3))
 
-;; "a:1 b:2 c:3"
+(pcase numbers
+  (`(,a ,b ,c)
+   (format
+    "a:%s b:%s c:%s"
+    a b c)))
+
+;; => "a:1 b:2 c:3"
 {% endhighlight %}
 
 The example above doesn't really need to be a regular `pcase`.  It's a
@@ -172,6 +177,51 @@ Pcase has a variety of advanced patterns, le's look into them now...
 {% endhighlight %}
 
 Matches if `{function}` applied to the object returns non-nil.
+
+Because we're in a backquote context, we don't quote our function name
+(as we usually would):
+
+{% highlight elisp %}
+(pcase '(1 2 3)
+  (`(,(pred numberp)
+     ,(pred numberp)
+     ,(pred numberp))
+   "All numbers")
+  (`(,(pred numberp)
+     ,(pred numberp)
+     ,(pred stringp))
+   "Last is a string"))
+
+;; => All Numbers
+{% endhighlight %}
+
+{% highlight elisp %}
+(pcase '(1 2 "hello")
+  (`(,(pred numberp)
+     ,(pred numberp)
+     ,(pred numberp))
+   "All numbers")
+  (`(,(pred numberp)
+     ,(pred numberp)
+     ,(pred stringp))
+   "Last is a string"))
+
+;; => Last is a string
+{% endhighlight %}
+
+You can use `lambda` to declare the function for a `pred` inline.
+
+{% highlight elisp %}
+(pcase '(1 2 "hello")
+  (`(3 4 5) "A list composed of 3, 4 and 5")
+  (`(1 2
+       ,(pred
+         (lambda (x)
+           (string-match "ell" x))))
+   "A string containing 'ell'"))
+
+;; => A string containing 'ell'
+{% endhighlight %}
 
 ## guard
 
@@ -195,7 +245,7 @@ Matches if any of the patterns match. Let's see some examples...
 (pcase numbers
   (or `(1 2 3) `(3 3 3) (message "matched one of these patterns")))
 
-;; matched one of these patterns
+;; => matched one of these patterns
 {% endhighlight %}
 
 The _don't care operator_ will work in an `or` case, note that in the `or` form we use **`_`**
@@ -205,16 +255,17 @@ instead of **`,_`**
 (pcase numbers
   (or `(3 3 3) `(1 _ 3) "matched one of these patterns"))
 
-;; matched one of these patterns
+;; => matched one of these patterns
 {% endhighlight %}
 
 **or** can also be embedded in another pattern, for example:
 
 {% highlight elisp %}
 (pcase numbers
-  (`(1 2 ,(or 3 5)) "list of (1 2 [3 or 5])"))
+  (`(1 2 ,(or 3 5))
+   "list of (1 2 [3 or 5])"))
 
-;; list of (1 2 [3 or 5])
+;; => list of (1 2 [3 or 5])
 {% endhighlight %}
 
 ## and
@@ -226,13 +277,30 @@ instead of **`,_`**
 Matches if all of the patterns match, let's look at some examples...
 
 {% highlight elisp %}
+(pcase '(1 2 3 4 5)
+  (`(1 2 3
+       ,(and
+         (pred numberp)
+         (pred (lambda (n) (> n 3))))
+       ,_)
+   t))
+
+;; => t
+{% endhighlight %}
+
+
+{% highlight elisp %}
 (pcase '(1 2 "hello")
   (`(1 2
-       ,(and (pred stringp)
-             (pred (lambda (s) (> (length s) 4)))))
-   "This matched"))
+       ,(and
+         (pred stringp)
+         (pred
+          (lambda (s)
+            (> (length s)
+               4)))))
+   t))
 
-;; This matched
+;; => t
 {% endhighlight %}
 
 ## let
@@ -265,16 +333,13 @@ that we can use for destructuring `pcase-let` and `pcase-let*`.
 While it's possible to do simple destructuring with the `pcase` macro, it's cleaner to use the `pcase-let` forms. For example:
 
 {% highlight elisp %}
-(setq-local time-list
-            (mapcar
-             'string-to-int
-             (s-split ":" (format-time-string "%H:%M:%S"))))
+(setq-local hour 20)
+(pcase hour
+  ((pred (lambda (h) (< h 12))) "Good Morning")
+  ((pred (lambda (h) (> h 18))) "Good Evening")
+  ((pred (lambda (h) (> h 12))) "Good Afternoon"))
 
-(pcase-let  ((`(,hour ,min ,second) time-list))
-  (pcase hour
-    (pred (lambda (h) (< 12 h)) "it's Morning")
-    (pred (lambda (h) (> 18 h)) "it's Evening")
-    (pred (lambda (h) (> 12 h)) "it's Afternoon")))
+;; => Good Evening
 {% endhighlight %}
 
 [bq]: https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
