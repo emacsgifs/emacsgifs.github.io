@@ -10,11 +10,13 @@ _Random (easily impressed) Visitor_
 
 ### Roadmap
 
-- TODO: Pages for most favorited GIFs by rank
 - TODO: Disquss comments
-- TODO: Tags based filtering (in-page using JS)
+- TODO: Find by tags
+- TODO: Find by keyword
+- TODO: More posts that aren't gifs
 - TODO: Reorder index based on filter/sort
 - TODO: Show date of tweet/Gif
+- TODO: Pages for most favorited GIFs by rank
 - TODO: Timeline view on index group by month / day
 
 [Open an issue](https://github.com/emacsgifs/emacsgifs.github.io/issues/new)
