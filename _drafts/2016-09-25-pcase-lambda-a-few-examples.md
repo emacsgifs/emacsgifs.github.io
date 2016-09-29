@@ -234,7 +234,7 @@ will pass it the match position (i.e. `"hello"`) as it's argument `x`.
   ((pred (lambda (h) (> h 18))) "Good Evening")
   ((pred (lambda (h) (> h 12))) "Good Afternoon"))
 
-;; (returns a message for the hour of the day)
+;; (a message for the current hour of the day)
 {% endhighlight %}
 
 ## guard
@@ -243,19 +243,20 @@ will pass it the match position (i.e. `"hello"`) as it's argument `x`.
 (guard {boolean-expression})
 {% endhighlight %}
 
-Matches if the `{boolean-expression}` evaluates to non-nil.  Nothing
-is passed in from the current match position, the `{boolen-expression}`
+Matches if the `{boolean-expression}` evaluates to non-nil.  Unlike
+`pred` no value is passed in from the current match position.
 
-Here's a simple examples:
+Here's a simple example:
 
 {% highlight elisp %}
 (pcase '(1 2 8)
   (`(1 2 ,(guard (= 3 1))) "Nope")
-  (`(1 2 ,(guard (= 1 2))) "Why?")
-  (`(1 2 ,(guard (= 2 3))) "Huh?")
-  (`(1 2 ,(guard (= 4 4))) "Yes!")
+  (`(1 2 ,(guard (= 4 4))) "That is true")
   (`(1 2 ,(guard (= 1 5))) "What"))
+
+;; That is true
 {% endhighlight %}
+
 ## or
 
 {% highlight elisp %}
@@ -266,16 +267,18 @@ Matches if any of the patterns match. Let's see some examples...
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
+
 (pcase numbers
   (or `(1 2 3) `(3 3 3) "matched one of these patterns"))
 
 ;; => matched one of these patterns
 {% endhighlight %}
 
-The _don't care operator_ will work in an `or` case, note that in the `or` form we use **`_`**
-instead of **`,_`**
+Remeber, we can use **dontcare** (`_`) in most places inside a pattern.
 
 {% highlight elisp %}
+(setq-local numbers '(1 2 3))
+
 (pcase numbers
   (or `(3 3 3) `(1 _ 3) "matched one of these patterns"))
 
@@ -285,6 +288,8 @@ instead of **`,_`**
 **or** can also be embedded in another pattern, for example:
 
 {% highlight elisp %}
+(setq-local numbers '(1 2 3))
+
 (pcase numbers
   (`(1 2 ,(or 3 5))
    "list of (1 2 [3 or 5])"))
