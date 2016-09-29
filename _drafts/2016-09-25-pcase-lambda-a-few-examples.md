@@ -91,27 +91,28 @@ If we need to match a value inside a list, we backquote the list.
 ;; => 25
 {% endhighlight %}
 
-## Anything goes
+## Don't care?
 
-If we want to match a pattern partially we use the dontcare operator (`_` **underscore**), here's how:
+If a particular spot in a structure isn't important to us we can use the **dontcare** operator (`_`), whatever is matched at this position is discarded.
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
 
 (pcase numbers
-  (`(3 4 5) "3 4 5 matched")
-  (`(1 ,_ 3) "1, *anything* and 3 matched")
-  (`(3 6 9) "3 6 9 matched"))
+  (`(3 4 5) "3, 4, 5 matched")
+  (`(1 ,_ 3) "1, *dontcare*, 3 matched")
+  (`(3 6 9) "3, 6, 9 matched"))
 
-;; => "1 ? 3 matched"
+;; => "1, *dontcare* 3 matched"
 {% endhighlight %}
 
-Note that we use `,_`
+Note that we may need to use the [**comma**][bq] `,_`, it depends where we are in a pattern.
 
-In pcase patterns the comma will assign the value in place to the
-symbol, let's see that...
 
-## Capture the values
+## Maybe you wanted that value?
+
+In pcase patterns which are [backquoted][bq] the comma will assign the
+value in place to the symbol:
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
@@ -124,12 +125,12 @@ symbol, let's see that...
 ;; Lisp error: (void variable _)
 {% endhighlight %}
 
-Oh! Ok, well not in the case of **`,_`** because it's very special.
+Oh! Ok, note that this isn't how it  **`,_`** works, because it's special.
 
-Ok, let's do it properly, we'll capture the second value in the list
-using a symbol which we'll call **`foo`**.
+Let's do it properly, we'll capture the second value
+using a symbol which we'll call **`foo`**, because, you know, it's traditional.
 
-In the pattern we will refer to it as **`,foo`**
+In the pattern we'll use **`,foo`**... let's see the example:
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
@@ -145,7 +146,7 @@ In the pattern we will refer to it as **`,foo`**
 By placing **`,foo`** in the pattern we capture the value in that
 position and place it into our symbol `foo`.
 
-This is how we de-structure data structures with `pcase` patterns.
+By the way, this might look like destructuring, that's because it is.
 
 {% highlight elisp %}
 (setq-local numbers '(1 2 3))
@@ -159,15 +160,17 @@ This is how we de-structure data structures with `pcase` patterns.
 ;; => "a:1 b:2 c:3"
 {% endhighlight %}
 
-The example above doesn't really need to be a regular `pcase`.  It's a
-misuse of the `pcase` form.  Instead we should be using one of the
-dedicated *pcase destructuring macros* `pcase-let` or `pcase-let*`.
-We'll look at those in some more depth
-later.  (If you prefer [jump to destructuring in depth right now.](#destructuring).)
+In the example above we destructure the `numbers` list into variables
+`a`, `b`, and `c`.
 
-## Advanced pcase patterns
+To be honest, that's a misuse of the `pcase` form. We should be using
+one of the destructuring `pcase-let` or `pcase-let*`.
 
-Pcase has a variety of advanced patterns.
+We'll look at these later.  ([or skip to destructuring.](#destructuring).)
+
+## pcase pattern helpers
+
+Pcase has a collection of useful pattern helpers.
 
 ## pred
 
@@ -179,8 +182,15 @@ Pred, a predicate takes a function which returns a boolean (non-nil evalutes to 
 
 Matches if `{function}` applied to the object returns non-nil.
 
-Because we're in a backquote context, we comma the `(pred)` form.  The
-match position will be passed to the function as a single argument.
+We can use `pred` to test a single value like this:
+
+{% highlight elisp %}
+
+{% endhighlight %}
+
+
+When we're in a backquote context, we comma the `(pred)` form.  The
+match position will be passed to the function as the first argument.
 
 {% highlight elisp %}
 (pcase '(1 2 3)
