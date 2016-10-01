@@ -54,12 +54,15 @@
       {{ content }}
 
       <footer>
-        {% if site.copyright_years %}
-        <p>Copyright &copy; {{ site.copyright_years }}, by {{ site.author }}.</p>
-        {% endif %}
+        <p>
+          This work is licensed under GNU GPL.
+        </p>
       </footer>
     </div>
 
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{{site.baseurl}}/public/js/jquery.fitvids.js"></script>
     <script>
       $(document).ready(function(){
         $("article").fitVids();

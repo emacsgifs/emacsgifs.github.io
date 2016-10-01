@@ -1,12 +1,6 @@
-# Compiled
 *.elc
-
-# Packaging
-.cask
-
 .DS_Store
-
+.cask
+.sass-cache
 _site
-.coffeehintrc
-.jshintrc
-img/Thumbs.db
+node_modules
