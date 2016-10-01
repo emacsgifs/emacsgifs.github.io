@@ -4,5 +4,5 @@ gem 'jekyll'
 gem 'redcarpet'
 gem 'jekyll-paginate'
 gem 'pry'
-
 gem 'nokogiri'
+gem 'pygments.rb'
