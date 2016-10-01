@@ -5,8 +5,8 @@ description: Bite sized chunks of Emacs in action
 highlighter: pygments
 permalink: /:title
 
-url: https://emacsgifs.github.io/
-baseurl: /
+url:
+baseurl:
 
 sass:
   sass_dir: public/css
