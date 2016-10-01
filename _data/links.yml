@@ -5,7 +5,7 @@
   title: About
 
 - url: https://github.com/ocodo/.emacs.d
-  title: ocodo .emacs.d
+  title: My .emacs.d
 
 - url: https://github.com/ocodo/.emacs.d/blob/master/personal-keybindings.md
-  title: ocodo Custom Keys
+  title: Non Standard Keys
