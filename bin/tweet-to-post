@@ -1,0 +1,31 @@
+#!/bin/sh
+
+export tweet_id="$(echo "$1" | sed -E 's/.*\/([0-9]+$)/\1/')"
+youtube-dl "https://twitter.com/emacs_gifs/status/${tweet_id}"
+mp4_name=$(ls *$tweet_id*)
+export body="$(echo "$mp4_name" | sed -E 's/emacs gifs - (.*)-[0-9]+.mp4$/\1/')"
+
+echo "Processing tweet..."
+echo $tweet_id
+echo "----------------------------------------------------------------------"
+echo $body
+
+mv "${mp4_name}" "public/videos/${tweet_id}.mp4"
+
+echo "
+---
+layout: post
+title: ${body}
+tages:
+  - emacs
+---
+
+${body}
+
+<video controls autoplay>
+  <source src=\"/public/videos/${tweet_id}.mp4\" type="video/mp4">
+  Sorry your browser does not support the video tag, maybe time to upgrade?
+</video>
+" > "_drafts/${tweet_id}.md"
+
+echo "- Done ---------------------------------------------------------------"
