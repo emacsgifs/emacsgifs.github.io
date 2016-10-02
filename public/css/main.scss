@@ -14,6 +14,7 @@ $amber-accent-color: #ff7e00;
 $avocado-accent-color: #568203;
 
 /*============================================================================*/
+@import 'https://fonts.googleapis.com/css?family=Source+Code+Pro';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 
 * {
@@ -21,6 +22,7 @@ $avocado-accent-color: #568203;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
 }
 
 
@@ -28,9 +30,6 @@ body {
   background-color: $site-background-color;
   border-top: 5px solid $contrast-color;
   color: $contrast-color;
-  font-weight: 400;
-  line-height: 1.5;
-
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,8 +70,7 @@ hr {
 }
 
 code {
-  font-family: menlo, monaco, Consolas, "Liberation Mono", Courier, monospace;
-  font-size: 1rem;
+  font-family: 'Source Code Pro', monospace;
 }
 
 p code {
@@ -84,6 +82,7 @@ p code {
   background-color: $site-background-color;
   border-radius: 5px;
   white-space: nowrap;
+  font-size: 0.9em;
 }
 
 table {
@@ -145,8 +144,12 @@ footer {
   box-shadow: 0px 5px 10px rgba(0,0,0,0.24);
   overflow-x: auto;
 
-  code {
-    font-size: 1.1rem;
+  pre {
+    * {
+      font-size: 0.9em;
+      font-weight: lighter;
+      font-family: 'Source Code Pro', monospace;
+    }
   }
 }
 
@@ -320,4 +323,12 @@ kbd {
   box-shadow: inset -1px -1px 1px #9e9e9e, 0 1px 1px #CECECE;
   font-size: 0.7em;
   margin-bottom: 0.15em;
+}
+
+.overflow-long {
+  max-height: 24em;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  border-radius: 6px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.24);
 }
