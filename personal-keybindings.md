@@ -114,7 +114,7 @@ a non-Emacsen way so that they're easier to read for people new to Emacs.
 | <kbd>Ctrl</kbd>-<kbd>x</kbd> <kbd>Ctrl</kbd>-<kbd>Meta</kbd>-<kbd>Up</kbd>     | `mac-set-frame-top-w100-h50-percent`    |                                  |
 | <kbd>Ctrl</kbd>-<kbd>x</kbd> <kbd>Meta</kbd>-<kbd>Up</kbd>                     | `mac-toggle-kiosk-mode`                 |                                  |
 | <kbd>F15</kbd>                                                                 | `magit-status`                          |                                  |
-| <kbd>Meta</kbd>-<kbd>\`</kbd>                                                  | `magit-status`                          | was `tmm-menubar`                |
+| <kbd>Meta</kbd>-<kbd>&grave;</kbd>                                             | `magit-status`                          | was `tmm-menubar`                |
 | <kbd>Super</kbd>-<kbd>a</kbd>                                                  | `mark-whole-buffer`                     |                                  |
 | <kbd>Ctrl</kbd>-<kbd>\<</kbd>                                                  | `mc/mark-all-like-this`                 |                                  |
 | <kbd>Ctrl</kbd>-<kbd>\></kbd>                                                  | `mc/mark-next-like-this`                |                                  |
