@@ -1,0 +1,11 @@
+#!/bin/sh
+
+emacs_keybindings="$HOME/.emacs.d/personal-keybindings.md"
+keybindings="./personal-keybindings.md"
+
+if [[ $emacs_keybindings -nt $keybindings ]]; then
+  echo "Updating personal-keybindings from ~/.emacs.d/personal-keybindings.md"
+  cp $emacs_keybindings $keybindings
+else
+  echo "personal keybindings page is up to date"
+fi

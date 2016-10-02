@@ -4,8 +4,14 @@
 - url: /about
   title: About
 
+- url: /tags
+  title: Tagged
+
+- url: /archive
+  title: Archive
+
 - url: https://github.com/ocodo/.emacs.d
   title: .emacs.d
 
-- url: https://github.com/ocodo/.emacs.d/blob/master/personal-keybindings.md
+- url: /personal-keybindings
   title: Custom Keys

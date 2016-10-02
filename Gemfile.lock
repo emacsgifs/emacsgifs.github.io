@@ -34,14 +34,10 @@ GEM
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
     pkg-config (1.1.7)
-    posix-spawn (0.3.11)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pygments.rb (0.6.3)
-      posix-spawn (~> 0.3.6)
-      yajl-ruby (~> 1.2.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -50,7 +46,6 @@ GEM
     safe_yaml (1.0.4)
     sass (3.4.22)
     slop (3.6.0)
-    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
@@ -60,8 +55,8 @@ DEPENDENCIES
   jekyll-paginate
   nokogiri
   pry
-  pygments.rb
   redcarpet
+  rouge
 
 BUNDLED WITH
    1.13.1

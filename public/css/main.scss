@@ -257,14 +257,13 @@ dl,
 /*============================================================================*/
 @media screen and (max-width: 767px) {
   .top-navbar {
-    height: 35px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 0px;
 
     a {
       padding: 5px 10px;
       margin: 5px;
-      border-radius: 0;
+      border-radius: 9px;
       border: 1px solid $contrast-color;
       transition: none;
 
@@ -285,5 +284,24 @@ dl,
 
   #logo {
     background-position: center center;
+  }
+}
+
+.tagged {
+  a.tag-btn {
+    border-radius: 0;
+    padding: 0px;
+    margin: 1px 0px;
+    display: inline-block;
+    color: white;
+    background-color: #67a4ce;
+    margin: 3px 0px;
+    padding: 4px 11px 9px 11px;
+    border-radius: 5px;
+
+    &:active, &:hover {
+      color: white;
+      background-color: #7BC0FA;
+    }
   }
 }
