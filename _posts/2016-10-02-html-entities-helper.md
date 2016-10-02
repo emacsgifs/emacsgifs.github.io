@@ -4,24 +4,22 @@ title: HTML entities helper
 ---
 
 While I was building my [custom keys](/personal-keybindings) page I
-needed HTML entities to replace characters I need that blow up markdown.
+needed HTML entities to replace characters I need that screw-up markdown.
 
 This is something I just built incidentally and maybe I should turn
 this into a package. For now I thought I'd just post the code, because
 it gives me a chance to share how it works and how I built it.
 
-The entity list I used is
-from
-[Wikipedia][entities-page]. so
-I figured it'd be interesting to talk a little bit about how I scraped it.
+The entity list I used is from [Wikipedia][entities-page].
 
-Jumping into the Chrome Dev Tools console, I used some jQuery and
-JS/ES6, to grab the useful text from the table of entities.
+Here's how I scraped it.  From the Chrome Dev Tools console, I used
+a little jQuery and JS/ES6, and grabbed the useful text from the table of
+entities.
 
 [On the page][entities-page], there's a single `table.wikitable.sortable`. This
 contains the useful HTML entity info.
 
-I used the following code to scrape out the interesting parts. (reformatted from a one-liner.)
+Here's the code I used. (reformatted from a one-liner, comments added)
 
 {% highlight js %}
 $('table.wikitable.sortable tr').
