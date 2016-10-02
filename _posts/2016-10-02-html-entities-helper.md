@@ -351,7 +351,7 @@ accent (i.e. backtick) `&#96;` &#96; and the vertical bar `&#124;`
 These two have named entities, but they aren't widely supported so
 it's best to use the numeric style enitities.
 
-Since they were missuing I added them into the list manually. Now,
+Since they were missing I added them into the list manually. Now,
 even though these were the entities that I really wanted for my
 current use case, I've often wanted to have a list of HTML entities
 available instantly.
