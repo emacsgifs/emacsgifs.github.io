@@ -2,7 +2,7 @@ title: Emacs Gifs
 author: Jason Milkins
 description: Bite sized chunks of Emacs in action
 
-highlighter: pygments
+highlighter: rouge
 permalink: /:title
 
 url:
