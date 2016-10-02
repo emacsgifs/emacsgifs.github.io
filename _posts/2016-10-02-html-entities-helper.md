@@ -54,7 +54,7 @@ dynamic content, I'd definitely migrate out to something else. (What
 that is would depend on a lot of factors.)
 
 Anyway, I have my list, so paste it into Emacs and let's do a little
-tidying up. (I could've done most od this up front BTW.)
+tidying up. (I could've done most of this during the scrap BTW.)
 
 After trimming off the enclosing quotes, I converted each line into a
 lisp string. From the top of the buffer: `C-M-%` regexp: `.*` with: `"\&"` (then `!` replace all)
