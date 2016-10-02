@@ -379,13 +379,14 @@ This is ok, but the great thing about `completing-read` is it's
 overriden by some neat selection frameworks. Ido (`ido-everywhere` and
 `ido-ubiquitous` in particular) and Ivy (`ivy-completing-read`) both
 do (or allow) this approach. Since I use **ido** I get this selection
-style: (BTW I'm also using [`ido-vertical`](https://github.com/creichert/ido-vertical-mode.el))
+style: (BTW I'm
+using
+[`ido-vertical`](https://github.com/creichert/ido-vertical-mode.el)
+for my aesthetic preferences
+and [`flx-ido`](https://github.com/lewang/flx/blob/master/flx-ido.el)
+to get fuzzy matching) )
 
-![](/images/select-entities-1.png)
-
-With [`flx-ido`](https://github.com/lewang/flx/blob/master/flx-ido.el) I also get fuzzy matching:
-
-![](/images/select-entities-2.png)
+![](/images/select-entities.gif)
 
 **Note**: Helm is also a good candidate selection framework, but it
 needs specialized functions written for it.
