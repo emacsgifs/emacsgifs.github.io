@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Interactive Git Rebase with Magit
+url: https://emacsgifs.github.io/tweets/758630551410515968.html
 tags:
   - emacs
 ---

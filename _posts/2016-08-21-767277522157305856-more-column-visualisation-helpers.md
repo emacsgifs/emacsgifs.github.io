@@ -1,6 +1,7 @@
 ---
 layout: post
 title: More column visualisation helpers
+url: https://emacsgifs.github.io/tweets/767277522157305856.html
 tags:
   - emacs
 ---

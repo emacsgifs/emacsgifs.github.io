@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  Emmet mode and some other tricks
+url: https://emacsgifs.github.io/tweets/762137254001160192.html
 tags:
   - emacs
   - web

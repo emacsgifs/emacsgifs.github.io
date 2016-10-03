@@ -1,6 +1,7 @@
 ---
 layout: post
 title: There are some odd things in Emacs
+url: https://emacsgifs.github.io/tweets/761139867409526784.html
 tags:
   - emacs
   - oddities

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Smart Parens - trying out keycastr
+url: https://emacsgifs.github.io/tweets/758906219423633408.html
 tags:
   - emacs
   - smartparens

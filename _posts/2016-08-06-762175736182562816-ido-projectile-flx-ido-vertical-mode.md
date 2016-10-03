@@ -1,6 +1,7 @@
 ---
 layout: post
 title: ido + projectile + flx + ido-vertical-mode
+url: https://emacsgifs.github.io/tweets/762175736182562816.html
 tags:
   - emacs
 ---

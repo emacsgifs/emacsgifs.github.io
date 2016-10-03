@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Get docstrings for emacs lisp functions
+url: https://emacsgifs.github.io/tweets/758306955123232769.html
 tags:
   - emacs
 ---
