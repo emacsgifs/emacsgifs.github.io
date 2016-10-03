@@ -23,7 +23,7 @@ tages:
 ${body}
 
 <video controls autoplay>
-  <source src=\"/public/videos/${tweet_id}.mp4\" type="video/mp4">
+  <source src=\"/public/videos/${tweet_id}.mp4\" type=\"video/mp4\">
   Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>
 " > "_drafts/${tweet_id}.md"
