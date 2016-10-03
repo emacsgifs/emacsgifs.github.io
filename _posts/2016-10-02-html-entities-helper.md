@@ -1,6 +1,19 @@
 ---
 layout: post
 title: HTML entities helper
+tags:
+  - emacs
+  - emacslisp
+  - package
+  - HTML
+  - convenience
+  - package
+  - elisp
+  - guide
+  - completing-read
+  - entities
+  - webscraping
+  - article
 ---
 
 While I was building my [custom keys](/personal-keybindings) page I

@@ -2,6 +2,7 @@
 layout: post
 title: highlight-indentation-mode is nice
 url: https://emacsgifs.github.io/tweets/758311379036024836.html
+thumbnail: /public/video-thumbs/758311379036024836.png
 tags:
   - emacs
 ---

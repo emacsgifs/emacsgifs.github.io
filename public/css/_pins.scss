@@ -1,0 +1,59 @@
+.pins  {
+  .wrapper {
+    width: 90%;
+    max-width: 767px;
+    min-width: 480px;
+    margin: 50px auto;
+  }
+  .columns {
+    column-count: 3;
+    column-gap: 15px;
+    column-fill: auto;
+  }
+  .pin {
+    display: inline-block;
+    background: #FEFEFE;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+    column-break-inside: avoid;
+    padding: 15px;
+    padding-bottom: 5px;
+    background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+    opacity: 1;
+    transition: all .2s ease;
+    max-width: 340px;
+  }
+  .pin img {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+  }
+  .pin p {
+    font: 12px/18px Arial, sans-serif;
+    color: #333;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .columns {
+      column-count: 3;
+    }
+  }
+  @media (max-width: 767px) {
+    .columns {
+      column-count: 1;
+    }
+  }
+  .columns:hover .pin:not(:hover) {
+    opacity: 0.4;
+  }
+
+  .tag {
+    background-color: $pin-tag-color;
+    color: white;
+    font-family: sans-serif;
+    border-radius: 16px;
+    padding: 1px 9px 1px 9px;
+  }
+}

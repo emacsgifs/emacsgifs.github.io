@@ -2,6 +2,7 @@
 layout: post
 title: Go to the beginning and end of the buffer
 url: https://emacsgifs.github.io/tweets/760054802407489536.html
+thumbnail: /public/video-thumbs/760054802407489536.png
 tags:
   - emacs
   - movement

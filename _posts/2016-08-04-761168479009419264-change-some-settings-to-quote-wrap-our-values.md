@@ -2,6 +2,7 @@
 layout: post
 title: Change some settings to quote wrap our values
 url: https://emacsgifs.github.io/tweets/761168479009419264.html
+thumbnail: /public/video-thumbs/761168479009419264.png
 tags:
   - emacs
 ---

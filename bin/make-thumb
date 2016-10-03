@@ -1,0 +1,4 @@
+#!/bin/sh
+
+id="$1"
+ffmpeg -i "public/videos/$id.mp4" -vf  "thumbnail,scale=${2-320}:-1" -frames:v 1 "public/video-thumbs/$id.png"

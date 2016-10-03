@@ -1,21 +1,28 @@
 ---
 ---
-
-
 @import 'syntax';
 
 $site-background-color: #f5f5f5;
 $code-background-color: #282828;
 $contrast-color: #555;
 
-$azul-accent-color: #0070bb;
-$ruby-accent-color: #e0115f;
-$amber-accent-color: #ff7e00;
-$avocado-accent-color: #568203;
+$pin-tag-color: #7ce;
+$azul-accent-color: #2D89C7;
 
 /*============================================================================*/
 @import 'https://fonts.googleapis.com/css?family=Source+Code+Pro';
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
+@import 'pins';
+
+a#logo {
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  font-size: 89px;
+  letter-spacing: -8px;
+  padding: 0px 0 0 0px;
+}
 
 * {
   margin: 0;
@@ -117,18 +124,6 @@ footer {
 /*============================================================================*/
 .azul { a { color: $azul-accent-color;
     &:hover { color: darken($azul-accent-color, 20%);
-}}}
-
-.ruby { a { color: $ruby-accent-color;
-    &:hover { color: darken($ruby-accent-color, 20%);
-}}}
-
-.amber { a { color: $amber-accent-color;
-    &:hover { color: darken($amber-accent-color, 20%);
-}}}
-
-.avocado { a { color: $avocado-accent-color;
-    &:hover { color: darken($avocado-accent-color, 20%);
 }}}
 
 /*----------------------------------------------------------------------------*/

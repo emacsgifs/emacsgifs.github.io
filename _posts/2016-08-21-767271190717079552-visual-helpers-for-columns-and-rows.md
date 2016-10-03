@@ -2,6 +2,7 @@
 layout: post
 title: Visual helpers for columns and rows
 url: https://emacsgifs.github.io/tweets/767271190717079552.html
+thumbnail: /public/video-thumbs/767271190717079552.png
 tags:
   - emacs
 ---

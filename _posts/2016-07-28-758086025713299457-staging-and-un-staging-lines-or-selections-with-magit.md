@@ -2,6 +2,7 @@
 layout: post
 title: Staging and un-staging lines or selections with magit
 url: https://emacsgifs.github.io/tweets/758086025713299457.html
+thumbnail: /public/video-thumbs/758086025713299457.png
 tags:
   - emacs
 ---
