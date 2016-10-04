@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Delimit-columns let's change some settings
-url: https://emacsgifs.github.io/tweets/761168479009419264.html
+url: https://emacsgifs.github.io/tweets/761168479009419264
 thumbnail: /public/video-thumbs/761168479009419264.png
 tags:
+  - columns
+  - align
+  - delimit-columns
   - emacs
 ---
 

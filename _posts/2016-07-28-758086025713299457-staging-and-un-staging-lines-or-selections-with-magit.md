@@ -1,13 +1,14 @@
 ---
 layout: post
 title: Staging and un-staging lines or selections with magit
-url: https://emacsgifs.github.io/tweets/758086025713299457.html
+url: https://emacsgifs.github.io/tweets/758086025713299457
 thumbnail: /public/video-thumbs/758086025713299457.png
 tags:
   - emacs
+  - magit
 ---
 
-Staging and un-staging lines or selections is simple with #magit in #emacs
+Staging and un-staging lines or selections is simple with magit.
 
 <video controls autoplay loop>
   <!-- ok the '#' char is going to be a problem ... let's get rid of them from

@@ -1,10 +1,11 @@
 ---
 layout: post
 title: cua-rectangle-to-multiple-cursors
-url: https://emacsgifs.github.io/tweets/758850167453777926.html
+url: https://emacsgifs.github.io/tweets/758850167453777926
 thumbnail: /public/video-thumbs/758850167453777926.png
 tags:
   - emacs
+  - multiple-cursors
 ---
 
 `M-x mc/cua-rectangle-to-multiple-cursors` Almost forgot! you can convert from CUA rectangle to multiple cursors

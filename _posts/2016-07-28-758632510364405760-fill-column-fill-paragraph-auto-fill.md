@@ -1,13 +1,13 @@
 ---
 layout: post
 title: fill-column fill-paragraph auto-fill
-url: https://emacsgifs.github.io/tweets/758632510364405760.html
+url: https://emacsgifs.github.io/tweets/758632510364405760
 thumbnail: /public/video-thumbs/758632510364405760.png
 tags:
   - emacs
 ---
 
-fill-column fill-paragraph auto-fill  Why not call it word-wrap!! #emacs_gifs
+fill-column fill-paragraph auto-fill  Why not call it word-wrap!
 
 <video controls autoplay loop>
   <source src="/public/videos/758632510364405760.mp4" type="video/mp4">

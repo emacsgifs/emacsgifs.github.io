@@ -1,10 +1,12 @@
 ---
 layout: post
 title: highlight-indentation-mode is nice
-url: https://emacsgifs.github.io/tweets/758311379036024836.html
+url: https://emacsgifs.github.io/tweets/758311379036024836
 thumbnail: /public/video-thumbs/758311379036024836.png
 tags:
   - emacs
+  - indentation
+  - highlight-indentation
 ---
 
 highlight-indentation-mode is nice for ... er... highlighting-indentation!

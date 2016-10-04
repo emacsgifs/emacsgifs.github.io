@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Smart Parens - trying out keycastr
-url: https://emacsgifs.github.io/tweets/758906219423633408.html
+url: https://emacsgifs.github.io/tweets/758906219423633408
 thumbnail: /public/video-thumbs/758906219423633408.png
 tags:
   - emacs
@@ -9,7 +9,7 @@ tags:
   - keycastr
 ---
 
-This is a bit rough, I'm trying out keycastr - this is a rough guide for Smart Parens
+This is a bit rough, I'm trying out keycastr - this is a rough guide for SmartParens
 
 <video controls autoplay loop>
   <source src="/public/videos/758906219423633408.mp4" type="video/mp4">

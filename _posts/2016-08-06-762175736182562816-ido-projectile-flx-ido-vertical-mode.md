@@ -1,10 +1,13 @@
 ---
 layout: post
 title: ido + projectile + flx + ido-vertical-mode
-url: https://emacsgifs.github.io/tweets/762175736182562816.html
+url: https://emacsgifs.github.io/tweets/762175736182562816
 thumbnail: /public/video-thumbs/762175736182562816.png
 tags:
   - emacs
+  - ido
+  - projectile
+  - flx
 ---
 
 ido + projectile + flx + ido-vertical-mode - my 'defaults' for opening files and creating folders.

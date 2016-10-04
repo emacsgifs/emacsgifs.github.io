@@ -1,11 +1,12 @@
 ---
 layout: post
 title: Proced - Emacs system process manager
-url: https://emacsgifs.github.io/tweets/761386573162086400.html
+url: https://emacsgifs.github.io/tweets/761386573162086400
 thumbnail: /public/video-thumbs/761386573162086400.png
 tags:
   - emacs
   - system
+  - proced
 ---
 
 Proced - Emacs system process manager (Doesn't work with OS X / macOS)

@@ -1,9 +1,8 @@
 ---
 layout: post
 title: Rotating the initialiser of an array Use CSV mode
-url: https://emacsgifs.github.io/tweets/775581514109116416.html
+url: https://emacsgifs.github.io/tweets/775581514109116416
 thumbnail: /public/video-thumbs/775581514109116416.png
-thumbnail: public/video-thumbs/775581514109116416.png
 tags:
   - emacs
   - csv
