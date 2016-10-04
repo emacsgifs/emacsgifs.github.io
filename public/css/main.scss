@@ -16,14 +16,6 @@ $azul-accent-color: #2D89C7;
 
 @import 'pins';
 
-a#logo {
-  font-family: 'Source Sans Pro';
-  font-weight: bold;
-  font-size: 89px;
-  letter-spacing: -8px;
-  padding: 0px 0 0 0px;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -249,7 +241,7 @@ dl,
   display: inline-block;
   height: 110px;
   width: 110px;
-  background-size: 90px 90px;
+  background-size: 110px 110px;
   background-position: left center;
   background-repeat: no-repeat;
 }
