@@ -3,7 +3,7 @@ layout: post
 title: HTML entities helper
 tags:
   - emacs
-  - emacslisp
+  - elisp
   - package
   - HTML
   - convenience

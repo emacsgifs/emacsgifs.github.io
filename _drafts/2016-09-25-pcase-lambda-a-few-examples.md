@@ -7,7 +7,7 @@ tags:
   - pattern-matching
   - no-tweet
   - code
-  - emacslisp
+  - elisp
 ---
 
 [`pcase.el`][pcase-el] brought pattern matching to Emacs Lisp.
