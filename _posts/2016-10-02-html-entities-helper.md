@@ -17,36 +17,33 @@ tags:
 ---
 
 While I was building my [custom keys](/personal-keybindings) page I
-needed HTML entities to replace characters I need that screw-up markdown.
+realised I needed to use HTML entities to avoid some characters that
+break the markdown to HTML process. In particular backquote/grave
+accent, used by markdown to indicate code & the pipe/vertical line,
+which is used to build tables.
 
-This is something I just built incidentally and maybe I should turn
-this into a package. For now I thought I'd just post the code, because
-it gives me a chance to share how it works and how I built it.
+By the way, this is something I just built incidentally.  Maybe I
+should turn it into a package, but for now I thought I'd just
+share how I built it.
 
-The entity list I used is from [Wikipedia][entities-page].
+First off I need a list of HTML entities, I used the
+one on [Wikipedia][entities-page].
 
-Here's how I scraped it.  From the Chrome Dev Tools console, I used
-a little jQuery and JS/ES6, and grabbed the useful text from the table of
-entities.
+[On that page][entities-page], there's a single
+`table.wikitable.sortable`. This contains all the useful HTML entity info.
 
-[On the page][entities-page], there's a single `table.wikitable.sortable`. This
-contains the useful HTML entity info.
+From the Chrome Dev Tools console, I used a little jQuery and JS/ES6,
+and grabbed the useful text from the table of entities. Here's the
+code I used. (reformatted from a one-liner, comments added)
 
-Here's the code I used. (reformatted from a one-liner, comments added)
-
-{% highlight js %}
-$('table.wikitable.sortable tr').
-  map(function(i, e) {
-    // Use destructuring to grab the contents
-    // of indices 0, 1 and 6 from each chil array of
-    // the tr elements found (i.e. the td elements).
-    [ent,chr,,,,,dsc] = e.children.map(function(i, e) {
-      return e.innerText;
-    });
-    return `char: ${chr} entity: &${ent}; text: ${dsc}`;
-  }).
-  toArray().
-  join("\n");
+{% highlight javascript %}
+$('table.wikitable.sortable tr').map((i, e) => {
+  // Pick cell 0,1,6 (entity, char and description)
+  // from each table row
+  [ent,chr,,,,,dsc] = $(e.children).toArray()
+    .map((e, i) => e.innerText )
+  return `char: ${chr} entity: &${ent}; text: ${dsc}`
+}).toArray().join("\n");
 {% endhighlight %}
 
 The output looks like this:
@@ -60,19 +57,18 @@ char: ¥ entity: &yen; text: yen sign (yuan sign)
 
 While I could use one of many scripting options to do this scraping, I
 find that using the Dev Tools to do an initial scrape and figure out
-CSS selector paths, is the most interactive and so easy and efficient.
+CSS selector paths, the interactivity, also gives us faster feedback.
 
 If I'm going to scrape the same page many times, and I expect more
 dynamic content, I'd definitely migrate out to something else. (What
 that is would depend on a lot of factors.)
 
-Anyway, I have my list, so paste it into Emacs and let's do a little
-tidying up. (I could've done most of this during the scrap BTW.)
+Anyway, now that I have my list, I'll paste it into Emacs and let's do a little
+tidying up. (I could've done most of this during the scrape BTW.)
 
-After trimming off the enclosing quotes, I converted each line into a
-lisp string. From the top of the buffer: `C-M-%` regexp: `.*` with: `"\&"` (then `!` replace all)
-
-Afterwards the entries look like this:
+After trimming off the enclosing quotes, I convert each line into a
+lisp string. I'll do a `query-regexp-replace` from the top of the
+buffer: `C-M-%` regexp: `.*` with: `"\&"` (then `!` replace all)
 
 {% highlight text %}
 "char: ¢ entity: &cent; text: cent sign"
@@ -81,8 +77,11 @@ Afterwards the entries look like this:
 "char: ¥ entity: &yen; text: yen sign (yuan sign)"
 {% endhighlight %}
 
-I think It's nice to align the **text:** entries. I select all the
-entries and do `M-x align-regexp` with: "` text: `", and we get this result:
+I'll align the **text:** entries so that later on the selection
+process will feel nicer.
+
+I select a region with all the entries and do `M-x align-regexp` with:
+"` text: `". We get this:
 
 {% highlight text %}
 "char: ¢ entity: &cent;   text: cent sign"
@@ -357,26 +356,8 @@ Scraped from Wikipedia at https://en.wikipedia.org/wiki/List_of_XML_and_HTML_cha
 {% endhighlight %}
 </div>
 
-I realised that a few things I needed most were missing, the grave
-accent (i.e. backtick) `&#96;` &#96; and the vertical bar `&#124;`
-(&#124; pipe.)
-
-These two have named entities, but they aren't widely supported so
-it's best to use the numeric style enitities.
-
-Since they were missing I added them into the list manually. Now,
-even though these were the entities that I really wanted for my
-current use case, I've often wanted to have a list of HTML entities
-available instantly.
-
-I'd usually not need to find one very often so I'd jump into a browser
-and pull up a match from google, to grab a specific entity.  This is
-the sort of trigger that will lead me to add things to Emacs.  I'll do
-something often, and there's a reasonable way to do it, but it'll be
-nowhere near as fast as it could be done in Emacs.
-
-Anyway, back to the code, using `completing-read` we can select a row
-from the list with completion:
+Now, using `completing-read` we can select a row from the list with
+completion:
 
 {% highlight elisp %}
 (defun html-entity-select ()
