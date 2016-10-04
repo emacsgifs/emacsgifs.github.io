@@ -9,7 +9,7 @@ tags:
 
 I often need visual helpers for columns and rows, here's what I use...
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="/public/videos/767271190717079552.mp4" type="video/mp4">
     Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>

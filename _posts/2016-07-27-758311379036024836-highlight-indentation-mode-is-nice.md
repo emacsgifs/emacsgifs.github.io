@@ -9,7 +9,7 @@ tags:
 
 highlight-indentation-mode is nice for ... er... highlighting-indentation!
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="/public/videos/758311379036024836.mp4" type="video/mp4">
     Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>

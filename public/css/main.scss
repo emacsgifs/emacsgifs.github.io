@@ -6,13 +6,13 @@ $site-background-color: #f5f5f5;
 $code-background-color: #282828;
 $contrast-color: #555;
 
-$pin-tag-color: #7ce;
 $azul-accent-color: #2D89C7;
 
 /*============================================================================*/
 @import 'https://fonts.googleapis.com/css?family=Source+Code+Pro';
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
+@import 'https://fonts.googleapis.com/css?family=Abril+Fatface';
 
 @import 'pins';
 
@@ -31,6 +31,13 @@ body {
   color: $contrast-color;
   -webkit-font-smoothing: antialiased;
 }
+
+h1 { font-family: 'Abril FatFace'; font-size: calc(100% + 7pt); }
+h2 { font-family: 'Abril FatFace'; font-size: calc(100% + 6pt); }
+h3 { font-family: 'Abril FatFace'; font-size: calc(100% + 5pt); }
+h4 { font-family: 'Abril FatFace'; font-size: calc(100% + 4pt); }
+h5 { font-family: 'Abril FatFace'; font-size: calc(100% + 3pt); }
+h6 { font-family: 'Abril FatFace'; font-size: calc(100% + 2pt); }
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, dl,
 blockquote,

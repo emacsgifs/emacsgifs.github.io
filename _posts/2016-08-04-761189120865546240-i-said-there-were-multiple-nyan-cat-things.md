@@ -11,7 +11,7 @@ tags:
 
 I said there were multiple Nyan cat things... I wasn't joking. This is Nyan Prompt! (for M-x eshell )
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="/public/videos/761189120865546240.mp4" type="video/mp4">
     Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>

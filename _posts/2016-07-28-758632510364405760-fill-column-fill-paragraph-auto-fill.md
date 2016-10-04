@@ -9,7 +9,7 @@ tags:
 
 fill-column fill-paragraph auto-fill  Why not call it word-wrap!! #emacs_gifs
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="/public/videos/758632510364405760.mp4" type="video/mp4">
     Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>

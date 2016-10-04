@@ -11,7 +11,7 @@ tags:
 
 This is a bit rough, I'm trying out keycastr - this is a rough guide for Smart Parens
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="/public/videos/758906219423633408.mp4" type="video/mp4">
     Sorry your browser does not support the video tag, maybe time to upgrade?
 </video>
