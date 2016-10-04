@@ -425,6 +425,6 @@ Then just use `(insert ...)` to enter it into our buffer.
 I hope this was relatively simple to follow along,  If you
 have any questions, tweet a message to [@emacs_gifs](https://twitter.com/emacs_gifs).
 
-The code for this post is on github at https://github.com/emacsfodder/html-entities-helper
+The code for this post is on github at [https://github.com/emacsfodder/html-entities-helper](https://github.com/emacsfodder/html-entities-helper)
 
 [entities-page]: https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
