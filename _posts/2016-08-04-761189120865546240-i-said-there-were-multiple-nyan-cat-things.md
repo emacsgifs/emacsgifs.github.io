@@ -1,7 +1,7 @@
 ---
 layout: post
 title: I said there were multiple Nyan cat things!
-url: https://emacsgifs.github.io/tweets/761189120865546240
+legacy_url: https://emacsgifs.github.io/tweets/761189120865546240.html
 thumbnail: /public/video-thumbs/761189120865546240.png
 tags:
   - emacs

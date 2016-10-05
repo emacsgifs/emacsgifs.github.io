@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git-timemachine - Super handy git history browsing
-url: https://emacsgifs.github.io/tweets/760392651543764996
+legacy_url: https://emacsgifs.github.io/tweets/760392651543764996.html
 thumbnail: /public/video-thumbs/760392651543764996.png
 tags:
   - emacs

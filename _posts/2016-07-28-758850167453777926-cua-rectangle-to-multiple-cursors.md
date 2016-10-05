@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cua-rectangle-to-multiple-cursors
-url: https://emacsgifs.github.io/tweets/758850167453777926
+legacy_url: https://emacsgifs.github.io/tweets/758850167453777926.html
 thumbnail: /public/video-thumbs/758850167453777926.png
 tags:
   - emacs

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Delimit-columns let's change some settings
-url: https://emacsgifs.github.io/tweets/761168479009419264
+legacy_url: https://emacsgifs.github.io/tweets/761168479009419264.html
 thumbnail: /public/video-thumbs/761168479009419264.png
 tags:
   - columns
