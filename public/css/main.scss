@@ -30,6 +30,7 @@ body {
   border-top: 5px solid $contrast-color;
   color: $contrast-color;
   -webkit-font-smoothing: antialiased;
+  padding-top: 1em;
 }
 
 h1 { font-family: 'Abril FatFace'; font-size: calc(100% + 7pt); }
