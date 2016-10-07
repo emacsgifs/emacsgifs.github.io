@@ -5,6 +5,13 @@ description: Bite sized chunks of Emacs in action
 highlighter: rouge
 permalink: /:title
 
+gems:
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from
+
+
 url:
 baseurl:
 
