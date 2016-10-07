@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Emmet mode and some other tricks
-legacy_url: https://emacsgifs.github.io/tweets/762137254001160192.html
+redirect_from: https://emacsgifs.github.io/tweets/762137254001160192.html
 thumbnail: /public/video-thumbs/762137254001160192.png
 tags:
   - emacs

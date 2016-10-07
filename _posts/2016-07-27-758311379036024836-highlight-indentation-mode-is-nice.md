@@ -1,7 +1,7 @@
 ---
 layout: post
 title: highlight-indentation-mode is nice
-legacy_url: https://emacsgifs.github.io/tweets/758311379036024836.html
+redirect_from: https://emacsgifs.github.io/tweets/758311379036024836.html
 thumbnail: /public/video-thumbs/758311379036024836.png
 tags:
   - emacs

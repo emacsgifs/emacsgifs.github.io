@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Get docstrings for emacs lisp functions
-legacy_url: https://emacsgifs.github.io/tweets/758306955123232769.html
+redirect_from: https://emacsgifs.github.io/tweets/758306955123232769.html
 thumbnail: /public/video-thumbs/758306955123232769.png
 tags:
   - emacs
