@@ -1,7 +1,7 @@
 ---
 layout: post
 title: fill-column fill-paragraph auto-fill
-redirect_from: https://emacsgifs.github.io/tweets/758632510364405760.html
+redirect_from: /tweets/758632510364405760.html
 thumbnail: /public/video-thumbs/758632510364405760.png
 tags:
   - emacs

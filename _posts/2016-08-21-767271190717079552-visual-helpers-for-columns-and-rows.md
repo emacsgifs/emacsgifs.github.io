@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Visual helpers for columns and rows
-redirect_from: https://emacsgifs.github.io/tweets/767271190717079552.html
+redirect_from: /tweets/767271190717079552.html
 thumbnail: /public/video-thumbs/767271190717079552.png
 tags:
   - emacs

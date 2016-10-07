@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Proced - Emacs system process manager
-legacy_redirect_from: https://emacsgifs.github.io/tweets/761386573162086400.html
+redirect_from: /tweets/761386573162086400.html
 thumbnail: /public/video-thumbs/761386573162086400.png
 tags:
   - emacs

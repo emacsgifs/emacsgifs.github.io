@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Smart Parens - trying out keycastr
-redirect_from: https://emacsgifs.github.io/tweets/758906219423633408.html
+redirect_from: /tweets/758906219423633408.html
 thumbnail: /public/video-thumbs/758906219423633408.png
 tags:
   - emacs

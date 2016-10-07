@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rectangular fun using cua-rectangle
-redirect_from: https://emacsgifs.github.io/tweets/758636722724872192.html
+redirect_from: /tweets/758636722724872192.html
 thumbnail: /public/video-thumbs/758636722724872192.png
 tags:
   - emacs

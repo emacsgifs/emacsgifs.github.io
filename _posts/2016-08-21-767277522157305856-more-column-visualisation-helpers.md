@@ -1,7 +1,7 @@
 ---
 layout: post
 title: More column visualisation helpers
-redirect_from: https://emacsgifs.github.io/tweets/767277522157305856.html
+redirect_from: /tweets/767277522157305856.html
 thumbnail: /public/video-thumbs/767277522157305856.png
 tags:
   - emacs
