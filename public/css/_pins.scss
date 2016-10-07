@@ -4,8 +4,8 @@ $pin-tag-color: #7ce;
   .wrapper {
     width: 90%;
     max-width: 767px;
-    min-width: 480px;
-    margin: 50px auto;
+    min-width: 380px;
+    margin: 10px auto;
   }
   .columns {
     column-count: 3;
@@ -23,8 +23,8 @@ $pin-tag-color: #7ce;
     padding-bottom: 5px;
     background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
     opacity: 1;
-    transition: all .2s ease;
-    max-width: 340px;
+    transition: all .2s ease-out;
+    max-width: 380px;
 
     img {
       width: 100%;
