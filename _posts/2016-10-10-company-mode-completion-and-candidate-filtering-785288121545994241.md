@@ -37,18 +37,13 @@ To turn it on.  You'll also need to add this to your `dotspacemacs/user-config`:
 In the video you'll see there are a couple of handy key bindings set
 to filter the completion candidates.
 
-- <kbd>Ctrl</kbd>-<kbd>/</kbd> - Search/Filter candidates (using Helm)
-
-- <kbd>Meta</kbd>-<kbd>Ctrl</kbd>-<kbd>/</kbd> - Search/Filter
-  candidates in place.
-
-
+| **Binding**                                  | **Description**                       |
+|----------------------------------------------|---------------------------------------|
+| <kbd>Ctrl</kbd>-<kbd>/</kbd>                 | Search/Filter candidates (using Helm) |
+| <kbd>Meta</kbd>-<kbd>Ctrl</kbd>-<kbd>/</kbd> | Search/Filter candidates in place     |
 
 For the second filter, the search string you enter is displayed in the
 middle of in the mode-line.
-
-I must admit, I didn't see it to begin with. It's fairly surprising to
-see text entry in the mode-line.
 
 Thanks go out to Evan N-D/@futuro and @Cassiel-Girl on
 https://gitter.im/syl20bnr/spacemacs for helping me find out about
