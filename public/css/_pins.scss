@@ -56,9 +56,7 @@ $pin-tag-color: #7ce;
       column-count: 1;
     }
   }
-  .columns:hover .pin:not(:hover) {
-    opacity: 0.4;
-  }
+
   .tag {
     background-color: $pin-tag-color;
     color: white;
