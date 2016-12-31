@@ -82,7 +82,7 @@ Autothemer solves most of the problems that a theme developer would face.
 By defining a simple set of color class rules we can remove swathes of
 repetitive face specs.  Looking again at the example above.
 
-```
+```elisp
 (((class color) (min-colors #xFFFFFF)) ((class color) (min-colors #xFF)))
 ```
 
@@ -96,19 +96,19 @@ more examples.
 
 For a two color display:
 
-```
+```elisp
 ((class color) (monochrome)))
 ```
 
 For a light background 24bit
 
-```
+```elisp
 ((class color) (min-colors #xFFFFFF) (background light))
 ```
 
 For a dark background 24bit
 
-```
+```elisp
 ((class color) (min-colors #xFFFFFF) (background dark))
 ```
 
@@ -126,7 +126,7 @@ be used.
 For example, if we have three display classes defined, 256, 24bit, 16
 color:
 
-```
+```elisp
 ((((class color) (min-colors #xFF))
   ((class color) (min-colors #xFFFFFF))
   ((class color) (min-colors 16)))
@@ -147,7 +147,7 @@ Autothemer's primary purpose is to reduce this down to a minimum.
 
 As we can see in the example above face specs now look like this:
 
-```
+```elisp
 ;; specifications for Emacs faces.
 ((button (:underline t :weight 'bold :foreground yellowish))
  (error  (:foreground reddish)))
