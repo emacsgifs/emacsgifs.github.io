@@ -214,6 +214,6 @@ as good usage examples.
 - [Creamsody](https://github.com/emacsfodder/emacs-theme-creamsody)
 
 You can find the Autothemer package in MELPA Emacs packages (`M-x
-packages-install-package`)
+package-install RET autothemer`)
 
 The github page is [https://github.com/sebastiansturm/autothemer/](https://github.com/sebastiansturm/autothemer/)
