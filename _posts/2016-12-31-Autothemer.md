@@ -97,7 +97,7 @@ more examples.
 For a two color display:
 
 ```elisp
-((class color) (monochrome)))
+((class color) (monochrome))
 ```
 
 For a light background 24bit
@@ -159,15 +159,16 @@ The faces are using colors named `yellowish` and `redish`.
 One important thing to remember is that we are in a different context
 to `deftheme` so symbols like `bold` or faces we want to `:inherit`
 from must use the `'` quote-mark. (See the example above `'bold` would
-usually not be quoted.) The following face attributes will be
-affected.
+usually not be quoted.)
 
-- `:inherit`
-- `:weight`
-- `:slant`
-- `:style`
+The values of these face attributes will be affected:
 
-(NOTE: there may be others I have missed!)
+- `:inherit` (the face being inherited will require quote)
+- `:weight` (bold, normal, light etc. must be quoted)
+- `:slant` (italic, oblique must be quoted)
+- `:style` (wave, stipple etc. must be quoted)
+
+(NOTE: there may some I've missed!)
 
 ### Body / Evaluated Forms
 
@@ -185,22 +186,20 @@ gotchas.)
 ### Auto generating missing specs
 
 You can automatically generate specs for faces that are not in your
-theme using the command
+theme using the command:
 
 `M-x autothemer-generate-templates`
 
-This will create a new buffer with simplified specs for all unthemed
+This creates a new buffer with simplified specs for all unthemed
 faces.  Colors will be selected from the theme palette based on the
-nearest RGB distance to the un-themed color.
-
-We recommend thoroughly reviewing the auto generated themes so that
-you produce a high quality theme.  Autothemer doesn't replace good
-judgement and taste!
+nearest RGB distance to the un-themed color.  You can drop these
+directly into your autothemer simplified faces block.
 
 ### Themes using Autothemer
 
-These themese are using Autothemer, and serve as good examples to check out.
+The following themese are already using Autothemer.  They serve
+as good usage examples.
 
+- [Gruvbox](https://github.com/greduan/emacs-theme-gruvbox)
 - [Darktooth](https://github.com/emacsfodder/emacs-theme-darktooth)
 - [Creamsody](https://github.com/emacsfodder/emacs-theme-creamsody)
-- [Gruvbox](https://github.com/greduan/emacs-theme-gruvbox)
