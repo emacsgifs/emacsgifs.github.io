@@ -61,7 +61,7 @@ background, providing different color palettes for each.
 ## Faces and Color Classes
 
 One of the things that makes writing themes for Emacs difficult is the
-clumsy syntax of `defface`, the macro used to configre Emacs `face`
+clumsy syntax of `defface`, the macro used to configure Emacs `face`
 definitions.
 
 Because the syntax isn't particularly developer friendly, it usually
@@ -179,7 +179,7 @@ comma-ed.  For example if you wanted to use the color `my-red` in a
 form, you would refer to it as `,my-red`, so that it's evaluated
 properly.
 
-(This section of the README will be updated as I find any other
+(This section of the article will be updated as I find any other
 gotchas.)
 
 ### Auto generating missing specs
