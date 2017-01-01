@@ -48,7 +48,8 @@ we'll use for Emacs running in an XTerm-256Color terminal.
     ;; Note: they need commas in these forms
 
     (custom-theme-set-variables 'example-name
-        `(ansi-color-names-vector [,example-dark
+        `(ansi-color-names-vector [
+                                   ,example-dark
                                    ,example-red
                                    ,example-green
                                    ,example-blue
@@ -56,7 +57,8 @@ we'll use for Emacs running in an XTerm-256Color terminal.
                                    ,example-yellow
                                    ,example-orange
                                    ,example-cyan
-                                   ,example-light])))
+                                   ,example-light
+                                   ])))
 ```
 
 We can easily add support for monochrome, 16 color... Well any number of
