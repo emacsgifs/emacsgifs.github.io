@@ -158,12 +158,12 @@ As we can see in the example above face specs now look like this:
 
 ```elisp
 ;; specifications for Emacs faces.
-((button (:underline t :weight 'bold :foreground yellowish))
- (error  (:foreground reddish)))
+((button (:underline t :weight 'bold :foreground example-yellow))
+ (error  (:foreground example-red)))
 ```
 
 color names from the palette can be used directly, as we can see here.
-The faces are using colors named `yellowish` and `redish`.
+The faces are using colors named `example-yellow` and `example-red`.
 
 One important thing to remember is that we are in a different context
 to `deftheme` so symbols like `bold` or faces we want to `:inherit`
