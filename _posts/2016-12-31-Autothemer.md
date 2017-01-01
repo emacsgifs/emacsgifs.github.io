@@ -12,10 +12,10 @@ tags:
   - display
 ---
 
-Autothemer is a wrapper for `deftheme`.  It allows you to create an
+[Autothemer](https://github.com/sebastiansturm/autothemer/) is a wrapper for `deftheme`.  It allows you to create an
 Emacs theme which can easily target multiple display types.
 
-Below is a quick example theme made with Autothemer, the important
+Below is a quick example theme made with [Autothemer](https://github.com/sebastiansturm/autothemer/), the important
 thing to notice here is the two sets of colors.  The first column is
 the color we'll use for Emacs GUI, the second column is the color
 we'll use for Emacs running in an XTerm-256Color terminal.
@@ -212,3 +212,8 @@ as good usage examples.
 - [Gruvbox](https://github.com/greduan/emacs-theme-gruvbox)
 - [Darktooth](https://github.com/emacsfodder/emacs-theme-darktooth)
 - [Creamsody](https://github.com/emacsfodder/emacs-theme-creamsody)
+
+You can find the Autothemer package in MELPA Emacs packages (`M-x
+packages-install-package`)
+
+The github page is [https://github.com/sebastiansturm/autothemer/](https://github.com/sebastiansturm/autothemer/)
