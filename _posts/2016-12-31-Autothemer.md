@@ -28,6 +28,8 @@ we'll use for Emacs running in an XTerm-256Color terminal.
     ((class color) (min-colors #xFF)))
 
     ;; Specify the color palette for each of the classes above.
+    (example-light  "#EAEBE1" "#FFFFFF")
+    (example-dark   "#242E11" "#000000")
     (example-red    "#781210" "#FF0000")
     (example-green  "#22881F" "#00D700")
     (example-blue   "#212288" "#0000FF")
@@ -37,19 +39,24 @@ we'll use for Emacs running in an XTerm-256Color terminal.
     (example-cyan   "#22DDFF" "#00FFFF"))
 
     ;; specifications for Emacs faces.
-    ((button (:underline t :weight 'bold :foreground yellowish))
-     (error  (:foreground reddish)))
+    ((button (:underline t :weight 'bold :foreground example-dark))
+     (error  (:foreground example-red)))
 
-    ;; Forms after the face specifications are evaluated.
-    ;; (palette vars can be used, read below for details.)
+    ;; Evaluated Forms after face specifications...
+
+    ;; Palette vars can be used here
+    ;; Note: they need commas in these forms
+
     (custom-theme-set-variables 'example-name
-        `(ansi-color-names-vector [,example-red
+        `(ansi-color-names-vector [,example-dark
+                                   ,example-red
                                    ,example-green
                                    ,example-blue
                                    ,example-purple
                                    ,example-yellow
                                    ,example-orange
-                                   ,example-cyan])))
+                                   ,example-cyan
+                                   ,example-light])))
 ```
 
 We can easily add support for monochrome, 16 color... Well any number of
